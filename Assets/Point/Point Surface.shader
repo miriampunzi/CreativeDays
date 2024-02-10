@@ -20,12 +20,12 @@ Shader "Graph/Point Surface"
         void ConfigureSurface(Input input, inout SurfaceOutputStandard surface)     // inout keyword:  indicates that it's both passed to the function and used for the result of the function.
         {
             //surface.Albedo = input.worldPos * 0.5 + 0.5;
-            surface.Albedo.rg = input.worldPos.xy * 0.5 + 0.5;
+            //surface.Albedo.rg = input.worldPos.xy * 0.5 + 0.5;
             // since all cubes has Z coordinates close to 0, all blue colors are set to 0.5.
             // So, only considering rg and xy, the blue component stays to 0
             surface.Smoothness = _Smoothness;
-            surface.Albedo.rg = saturate(input.worldPos.xy * 0.5 + 0.5);
-        }
+            surface.Albedo = saturate(input.worldPos * 0.5 + 0.5);
+}
 
 		ENDCG
     }
